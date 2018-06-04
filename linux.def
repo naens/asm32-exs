@@ -1,0 +1,9 @@
+sys_exit	equ	01h
+sys_read	equ	03h
+sys_write	equ	04h
+sys_open	equ	05h
+sys_close	equ	06h
+stdin		equ	0
+stdout		equ	1
+stderr		equ	2
+

@@ -1,0 +1,8 @@
+*
+!*.*
+!Makefile
+a.out
+*~
+vgcore.*
+*.o
+
