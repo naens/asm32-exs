@@ -38,7 +38,7 @@ _start:
 	je	exit
 
 exit:
-	mov	eax, 1
+	mov	eax, sys_exit
 	mov	ebx, 0
 	int	80h
 

@@ -2,7 +2,22 @@
 max_num_len	equ	8
 cons_rdbf_len	equ	200h
 
-; TODO: cons_prstr: print null-terminated string
+;: cons_prstr: print null-terminated string
+cons_prstr:
+	mov	ebx, eax	; string address in ebx
+	mov	esi, 0		; length in esi
+.lp:
+	cmp	[ebx+esi], 0
+	je	.e
+	inc	esi
+	jmp	.lp
+.e:
+	mov	ecx, ebx	; string address
+	mov	eax, sys_write
+	mov	ebx, stdout
+	mov	edx, esi
+	int	80h
+	ret
 
 
 
