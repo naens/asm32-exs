@@ -34,6 +34,9 @@ _start:
 	mov	byte [outstr + esi], 0	; set outstr[length] = 0
 	mov	eax, outstr
 	call	cons_prstr
+
+	; print newline
+	call	cons_nl
 	
 	dec	dword [cnt]
 	jnz	.lp
@@ -100,24 +103,27 @@ palin:
 
 	mov	ecx, eax
 	call	str_copy
-	mov	ebx, dest	; ebx = address of the destination
+	mov	ebx, [dest]	; ebx = address of the destination
 				;       for the rest of the function
 
 ; 1: compare left to right
-	mov	esi, 0
+	mov	esi, [length]
+	shr	esi, 1
+	dec	esi		; esi = (length / 2) - 1
 	mov	edi, [length]
-	dec	edi
-
-	mov	ecx, [length]
-	shr	ecx, 1
+	inc	edi
+	shr	edi, 1		; edi = (length + 1) / 2
 
 .w1lp:
-	cmp	esi, ecx
-	jge	.w1e
+	cmp	esi, 0
+	jnge	.w1e
 	mov	al, [ebx + esi]
 	cmp	al, [ebx + edi]
-	ja	.incleft
-	jb	.copylr
+	ja	.copylr
+	jb	.incleft
+	dec	esi
+	inc	edi
+	jmp	.w1lp
 .w1e:
 
 .incleft:
@@ -159,6 +165,9 @@ palin:
 	mov	esi, 0
 	mov	edi, [length]
 	dec	dword edi
+
+	mov	ecx, [length]
+	shr	ecx, 1
 
 .w3lp:
 	cmp	esi, ecx
