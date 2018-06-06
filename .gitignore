@@ -5,4 +5,4 @@ a.out
 *~
 vgcore.*
 *.o
-
+*-all.asm
