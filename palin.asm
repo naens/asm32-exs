@@ -113,6 +113,9 @@ dest	resd	1
 	section .text
 palin:
 ; 0: initialize variables and copy source string to destination
+	cmp	eax, 0
+	je	.e
+
 	mov	[length], eax
 	mov	[src], esi
 	mov	[dest], edi
@@ -194,6 +197,8 @@ palin:
 	dec	edi
 	jmp	.w3lp
 .w3e:
+	mov	eax, [length]
+.e:
 	ret
 
 %include "linux.def"

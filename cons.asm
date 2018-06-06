@@ -118,7 +118,7 @@ cons_readln:
 
 	; result = bufind
 	mov	ebx, [readln_bufind]		; bufind in ebx
-	lea	eax, [readln_buf+ebx]	; result in eax
+	lea	eax, [readln_buf+ebx]		; result in eax
 
 	; while buf[bufind] <> 0ah
 .whlp:
