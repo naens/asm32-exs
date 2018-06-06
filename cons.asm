@@ -135,3 +135,16 @@ cons_readln:
 	mov	[readln_bufind], ebx		; put ebx in bufind
 	ret
 
+;; Function: cons_nl
+;;     prints new line on console
+cons_nl:
+	mov	eax, 0ah
+	push	eax
+	mov	eax, sys_write
+	mov	ebx, stdout
+	mov	ecx, esp
+	mov	edx, 1
+	int	80h
+	pop	eax
+	ret
+
