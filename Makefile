@@ -17,5 +17,5 @@ export:
 	@./incl.sh palin.asm > palin-all.asm
 
 clean:
-	rm -f *.o test1-all.asm hello test1
+	rm -f *.o test1-all.asm hello test1 palin
 
