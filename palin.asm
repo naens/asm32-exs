@@ -23,9 +23,25 @@ _start:
 	mov	ebx, eax		; string address in ebx
 	call	str_length		; eax: length
 
+	; count number of digits
+	mov	ecx, 0
+	mov	esi, ebx
+.cnt:
+	cmp	eax, 0
+	je	.cnte
+	cmp	byte [esi], '0'
+	jb	.cnte
+	cmp	byte [esi], '9'
+	ja	.cnte
+	inc	ecx
+	inc	esi
+	dec	eax
+	jmp	.cnt
+.cnte:
+
 	; call palin
 	mov	esi, ebx		; esi: input string
-	; string length already in eax
+	mov	eax, ecx		; eax: length of the string
 	mov	edi, outstr		; edi: output string
 	call	palin			; write to outstr, len in eax
 
