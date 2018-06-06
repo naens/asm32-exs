@@ -7,7 +7,7 @@ cons_prstr:
 	mov	ebx, eax	; string address in ebx
 	mov	esi, 0		; length in esi
 .lp:
-	cmp	[ebx+esi], 0
+	cmp	byte [ebx+esi], 0
 	je	.e
 	inc	esi
 	jmp	.lp
